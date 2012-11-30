@@ -6,6 +6,32 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome aboard! Visit <a href="http://locomotivejs.org/">locomotivejs.org</a> for details.</p>
+    <p><a href="<%- urlFor({ controller: 'pages', action: 'new' }) %>">New Page</a></p>
+    <% if(pages.length > 0) { %>
+    <table width="500px" cellpadding="5px" cellspacing="0" border="0">
+    	<thead>
+    		<tr align="left">
+                <th width="5%">#</th>
+                <th>Title</th>
+                <th width="20%">Actions</th>
+            </tr>
+    	</thead>
+
+    	<tbody>
+    		<% for(var i in pages) { %>
+    		<tr>
+                <td><%= (parseInt(i) + 1) %></td>
+                <td><%= pages[i].content.title %></td>
+                <td>
+                    <a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'edit' }) %>">Edit</a> | 
+                    <a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'destroy' }) %>">Delete</a>
+                </td>
+            </tr>
+    		<% } %>
+    	</tbody>
+    </table>
+    <% } else { %>
+    <h2>No pages found...</h2>
+    <% } %>
   </body>
 </html>

@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>New Page</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome aboard! Visit <a href="http://locomotivejs.org/">locomotivejs.org</a> for details.</p>
+    <h1>New Page</h1>
+    <form method="post" action="<%- post_url %>">
+    	<p>
+    		<input type="text" name="title" placeholder="Title..." style="width: 500px; padding: 5px 10px; font-size: 15px;">
+    	</p>
+
+    	<p>
+    		<textarea name="text" placeholder="Content..." style="width: 500px; height: 300px; padding: 5px 10px; font-size: 15px;"></textarea>
+    	</p>
+
+    	<p>
+    		<input type="submit" value="Submit">
+    	</p>
+    </form>
   </body>
 </html>
