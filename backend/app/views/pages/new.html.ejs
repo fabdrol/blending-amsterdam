@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>New Page</h1>
-    <form method="post" action="<%- post_url %>">
+    <form method="post" action="<%- urlFor({ controller: 'pages', action: 'create' }) %>" style="width: 520px;">
     	<p>
     		<input type="text" name="title" placeholder="Title..." style="width: 500px; padding: 5px 10px; font-size: 15px;">
     	</p>
@@ -15,8 +15,23 @@
     		<textarea name="text" placeholder="Content..." style="width: 500px; height: 300px; padding: 5px 10px; font-size: 15px;"></textarea>
     	</p>
 
+      <% if(pages.length > 0) { %>
+      
+      <p>
+        <label>Hierarchy:</label>
+        <select name="parent">
+          <option value="_none" selected>Root Level</option>
+          <option value="_none">&nbsp;</option>
+        <% for(var i in pages) { %>
+          <option value="<%- pages[i]._id %>"><%- pages[i].content.title %></option>
+        <% } %>
+        </select>
+      </p>
+
+      <% } %>
+      <hr style="border: none; background: #999; height: 1px; margin: 30px 0;">
     	<p>
-    		<input type="submit" value="Submit">
+    		<input type="submit" value="Submit"> <span>or <a href="/pages">cancel</a></span>
     	</p>
     </form>
   </body>

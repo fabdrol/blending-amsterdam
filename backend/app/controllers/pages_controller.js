@@ -32,15 +32,29 @@ PagesController.index = function() {
 PagesController.new = function() {
 	var self = setup(this);
 
-	this.post_url = this.urlFor({ controller: 'pages', action: 'create' });
-	this.render();
+	this.Page.findAll(function(err, pages) {
+		if(!err) {
+			self.pages = pages;
+		} else {
+			self.pages = [];
+		}
+
+		self.render();
+	});
+	
 }
 
 PagesController.show = function() {
 	var self = setup(this);
 
-	this.title = 'Show:' + this.params('id');
-	this.render();
+	this.Page.findByID(this.param('id'), function(err, page) {
+		if(!err) {
+			self.page = page;
+			self.render();
+		} else {
+			self.redirect('/');
+		}
+	});
 }
 
 PagesController.edit = function() {
@@ -56,17 +70,47 @@ PagesController.edit = function() {
 /* Handle (PUT) edit page data */
 PagesController.update = function() {
 	var self = setup(this);
+	var id 	 = self.param('id');
 
-	this.title = 'Update:' + this.params('id');
-	this.render();
+	this.Page.update({ _id: id }, {
+
+		$set: {
+			content: {
+				title: self.param('title'),
+				text: self.param('text')
+			}
+		}
+
+	}, function(err) {
+		if( ! err) {
+			self.redirect(self.urlFor({ controller: 'pages', id: id, action: 'edit' }));
+		} else {
+			self.title = err;
+			self.render();
+		}
+	});
 }
 
 /* Handle (DELETE) destroy page */
 PagesController.destroy = function() {
 	var self = setup(this);
+	var id 	 = self.params('id');
 
-	this.title = 'Destroy:' + this.params('id');
-	this.render();
+	self.Page.findByID(id, function(err, doc) {
+		if(err) {
+			self.title = err;
+			self.render();
+		} else {
+			doc.remove(function(err, doc) {
+				if(err) {
+					self.title = err;
+					self.render();
+				} else {
+					self.redirect('pages#index');
+				}
+			}); 
+		}
+	});
 }
 
 /* Handle (POST) new page data */

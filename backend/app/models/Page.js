@@ -32,7 +32,7 @@ module.exports = function(mongoose) {
 	}
 
 	Page.statics.findByID = function(id, cb) {
-		this.find({ _id: id }, cb);
+		this.findOne({ _id: id }, cb);
 	}
 
 	return mongoose.model('Page', Page);

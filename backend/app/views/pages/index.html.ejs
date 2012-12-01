@@ -21,10 +21,14 @@
     		<% for(var i in pages) { %>
     		<tr>
                 <td><%= (parseInt(i) + 1) %></td>
-                <td><%= pages[i].content.title %></td>
+                <td><a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'show' }) %>"><%= pages[i].content.title %></a></td>
                 <td>
                     <a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'edit' }) %>">Edit</a> | 
-                    <a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'destroy' }) %>">Delete</a>
+                    
+                    <form method="post" name="delete_form" action="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'destroy' }) %>" style="display: inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <a href="javascript:document.forms[0].submit()" style="display: inline;">Delete</a>
+                    </form>
                 </td>
             </tr>
     		<% } %>
