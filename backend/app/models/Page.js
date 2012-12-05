@@ -22,7 +22,8 @@ module.exports = function(mongoose) {
 			version: 	{ type: String, default: '-' },
 			timestamp: 	{ type: Number, default: function() { return Date.now(); } },
 			view_id: 	ID,
-		 	device: 	{ type: String, default: 'all' }
+		 	device: 	{ type: String, default: 'all' },
+		 	parent: 	ID
 		}
 
 	});

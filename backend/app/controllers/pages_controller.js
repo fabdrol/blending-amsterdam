@@ -59,11 +59,24 @@ PagesController.show = function() {
 
 PagesController.edit = function() {
 	var self = setup(this);
-	var id = this.param('id');
+	var id 	 = this.param('id');
 	
 	this.Page.findByID(id, function(err, doc) {
-		self.item = doc;
-		self.render();
+		if(!err) {
+			self.item = doc;
+
+			self.Page.findAll(function(err, pages) {
+				if(!err) self.pages = pages;
+				else self.pages = [];
+
+				self.render();
+			});
+		} else {
+			self.error = "Couldn't find that page...";
+			self.item  = null;
+			self.pages = [];
+			self.render();
+		}
 	});
 }
 
@@ -78,6 +91,10 @@ PagesController.update = function() {
 			content: {
 				title: self.param('title'),
 				text: self.param('text')
+			},
+
+			meta: {
+				parent: self.param('parent')
 			}
 		}
 
@@ -115,8 +132,12 @@ PagesController.destroy = function() {
 
 /* Handle (POST) new page data */
 PagesController.create = function() {
-	var self = setup(this);
-	var page = new this.Page();
+	var self 	= setup(this);
+	var page 	= new this.Page();
+
+	if(this.param('parent') != '_none') {
+		page.meta.parent = this.param('parent');
+	}
 
 	page.content.title = this.param('title');
 	page.content.text = this.param('text');

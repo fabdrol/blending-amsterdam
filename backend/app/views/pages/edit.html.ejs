@@ -15,6 +15,30 @@
     	<p>
     		<textarea name="text" placeholder="Content..." style="width: 500px; height: 300px; padding: 5px 10px; font-size: 15px;"><%= item.content.text %></textarea>
     	</p>
+
+      <% if(pages.length > 0) { %>
+      
+      <p>
+        <label>Hierarchy:</label>
+        <select name="parent">
+          <option value="_none">Root Level</option>
+          <option value="_none">&nbsp;</option>
+        <% for(var i in pages) { %>
+          <!--
+          <% if(item.meta.parent == pages[i]._id) { %>
+          Selected 
+          <% } else { %>
+          Not selected
+          <% } %>
+          Item: <%= item.meta.parent %>
+          Page: <%= pages[i]._id %>
+          -->
+          <option value="<%- pages[i]._id %>"<%= (pages[i]._id == item.meta.parent ? ' selected' : '') %>><%- pages[i].content.title %></option>
+        <% } %>
+        </select>
+      </p>
+
+      <% } %>
       
       <hr style="border: none; background: #999; height: 1px; margin: 30px 0;">
       
