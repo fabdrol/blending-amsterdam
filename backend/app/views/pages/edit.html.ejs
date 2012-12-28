@@ -23,18 +23,11 @@
         <select name="parent">
           <option value="_none">Root Level</option>
           <option value="_none">&nbsp;</option>
-        <% for(var i in pages) { %>
-          <!--
-          <% if(item.meta.parent == pages[i]._id) { %>
-          Selected 
-          <% } else { %>
-          Not selected
+          <% for(var i in pages) { %>
+          <% if((pages[i]._id + '') != (item._id + '')) { %>
+          <option value="<%- pages[i]._id %>"<%= ((pages[i]._id + '') == (item.meta.parent + '') ? ' selected' : '') %>><%- pages[i].content.title %></option>
           <% } %>
-          Item: <%= item.meta.parent %>
-          Page: <%= pages[i]._id %>
-          -->
-          <option value="<%- pages[i]._id %>"<%= (pages[i]._id == item.meta.parent ? ' selected' : '') %>><%- pages[i].content.title %></option>
-        <% } %>
+          <% } %>
         </select>
       </p>
 

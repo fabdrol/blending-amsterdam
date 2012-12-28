@@ -23,7 +23,28 @@ PagesController.index = function() {
 		}
 
 		self.title = "Index";
-		self.pages = pages;
+		self.pages = {};
+
+		var subs = [];
+
+		for(var i in pages) {
+			var page = pages[i];
+
+			if(!page.meta.parent) {
+				self.pages[(page._id + '')] = JSON.parse(JSON.stringify(page));
+				self.pages[(page._id + '')].children = [];
+			} else {
+				subs.push(page);
+			}
+		}
+
+		for(var j in subs) {
+			var page = subs[j];
+
+			if(typeof self.pages[page.meta.parent] !== 'undefined') {
+				self.pages[page.meta.parent].children.push(JSON.parse(JSON.stringify(page)));
+			}
+		}
 
 		self.render();
 	});
@@ -32,7 +53,7 @@ PagesController.index = function() {
 PagesController.new = function() {
 	var self = setup(this);
 
-	this.Page.findAll(function(err, pages) {
+	this.Page.findAllRoot(function(err, pages) {
 		if(!err) {
 			self.pages = pages;
 		} else {
@@ -65,7 +86,7 @@ PagesController.edit = function() {
 		if(!err) {
 			self.item = doc;
 
-			self.Page.findAll(function(err, pages) {
+			self.Page.findAllRoot(function(err, pages) {
 				if(!err) self.pages = pages;
 				else self.pages = [];
 

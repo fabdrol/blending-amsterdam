@@ -13,7 +13,7 @@
     		<tr align="left">
                 <th width="5%">#</th>
                 <th>Title</th>
-                <th width="20%">Actions</th>
+                <th width="30%">Actions</th>
             </tr>
     	</thead>
 
@@ -23,14 +23,18 @@
                 <td><%= (parseInt(i) + 1) %></td>
                 <td><a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'show' }) %>"><%= pages[i].content.title %></a></td>
                 <td>
-                    <a href="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'edit' }) %>">Edit</a> | 
-                    
-                    <form method="post" name="delete_form" action="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'destroy' }) %>" style="display: inline;">
+                    <form method="post" name="delete_form" action="<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'destroy' }) %>">
+                        <input type="button" onclick="window.location.href = '<%- urlFor({ controller: 'pages', id: pages[i]._id, action: 'edit' }) %>';" value="Edit">
+
                         <input type="hidden" name="_method" value="DELETE">
-                        <a href="javascript:document.forms[0].submit()" style="display: inline;">Delete</a>
+                        <input type="submit" value="Delete">
                     </form>
                 </td>
             </tr>
+
+            <% for(var i in pages) { %>
+            <% } %>
+            
     		<% } %>
     	</tbody>
     </table>

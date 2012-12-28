@@ -22,9 +22,9 @@
         <select name="parent">
           <option value="_none" selected>Root Level</option>
           <option value="_none">&nbsp;</option>
-        <% for(var i in pages) { %>
+          <% for(var i in pages) { %>
           <option value="<%- pages[i]._id %>"><%- pages[i].content.title %></option>
-        <% } %>
+          <% } %>
         </select>
       </p>
 

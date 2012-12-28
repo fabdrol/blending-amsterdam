@@ -32,6 +32,10 @@ module.exports = function(mongoose) {
 		this.find({}, cb);
 	}
 
+	Page.statics.findAllRoot = function(cb) {
+		this.$where(' ! this.meta.parent').exec(cb);
+	}
+
 	Page.statics.findByID = function(id, cb) {
 		this.findOne({ _id: id }, cb);
 	}

@@ -1,50 +1,62 @@
-// You custom settings file to override Foundation defaults
+@import "compass/css3";
 @import "settings";
-
-// Comment out this import if you are customizing you imports below
 @import "foundation";
+@import "content";
 
-// ----------------------------------------
-// Import specific parts of Foundation by commenting the import "foundation"
-// and uncommenting what you want below. You must uncomment the following if customizing
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 
-// @import "compass/css3";
-// @import "foundation/settings";
-// @import "foundation/functions/all";
+	&.main-bg {
+		background-position: center top;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+}
 
-// Control which mixins you have access too
+body .wrapper, body .main-bg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
 
-// @import "foundation/mixins/clearfix";
-// @import "foundation/mixins/css-triangle";
-// @import "foundation/mixins/font-size";
+body .main-bg {
+	position: fixed;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
 
-// Must include next two for semantic grid to work
+	.background-img {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: left top;
+	}
+}
 
-// @import "foundation/mixins/respond-to";
-// @import "foundation/mixins/semantic-grid";
+body .wrapper {
+	z-index: 10;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
 
-// @import "modular-scale";
-// @import "foundation/common/globals";
+	.content {
+		display: block;
+		width: 100%;
+		height: auto;
+		overflow: hidden;
 
-// Must include the grid for any responsiveness
-
-// @import "foundation/components/grid";
-
-// Control which common styles get compiled
-
-// @import "foundation/common/typography";
-// @import "foundation/common/forms";
-
-// Control which components you get if customizing
-
-// @import "foundation/components/modules/buttons";
-// @import "foundation/components/modules/tabs";
-// @import "foundation/components/modules/ui";
-// @import "foundation/components/modules/topbar";
-// @import "foundation/components/modules/navbar";
-// @import "foundation/components/modules/orbit";
-// @import "foundation/components/modules/reveal";
-// @import "foundation/components/modules/offcanvas";
-
-// Media Queries Overrides
-// @import "foundation/components/modules/mqueries";
+		@include content;
+	}
+}
