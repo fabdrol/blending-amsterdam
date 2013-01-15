@@ -12,8 +12,8 @@
 		@package	: kiosk-app
 		@author		: Fabian Tollenaar
 		@version	: 1.0
-		@date 		: 2012/12/28
-		@copyright	: © 2012 Starting Point
+		@date 		: 2013/01/03
+		@copyright	: © 2013 Starting Point
 		@contact 	: fabian[at]startingpoint[dot]nl
 	-->
 
@@ -21,18 +21,63 @@
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<title>kiosk-app</title>
+	<title>Blending Amsterdam</title>
 
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
 	<script src="javascripts/vendor/foundation/modernizr.foundation.js"></script>
 </head>
 
-<body data-background="images/bg.jpg">
+<body data-background="images/map-home.png">
 	
 	<section class="wrapper">
-		<div class="content">
-
+		<div class="canvas" id="canvas">
+			<!-- CONTENT -->
+			
+			<div class="timeLineContainer">
+				
+				<div class="timeLineContent" id="chrome_timeline">
+					
+				</div>
+				
+			</div>
+			
+			<div class="contentContainer">
+				<div class="content" id="chrome_content"></div>
+			</div>
+			
+			
+			<div class="footerContainer">
+				<div class="buttonMarginLeft">
+					<a href="#" class="homeButton" id="chrome_btn_home"></a>
+				</div>
+				
+				<div class="buttonMarginRight">
+					<a href="#" class="playButton" id="chrome_btn_play"></a>
+				</div>
+				
+				<div class="bottomTitleBoxContainer">
+					<div class="bottomTitleBoxContent" id="chrome_title">
+						<h1 class="title"></h1>
+						<div class="subTitle">
+							<h2></h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="home" class="home">
+			<div class="logo">
+				<img src="images/logo-home.png" alt="Blending Amsterdam Reality">
+			</div>
+			
+			<div class="brand">
+				<img src="images/beeldmerk.png" alt="">
+			</div>
+			
+			<a href="#" class="btn left"><br>CREDITS</a>
+			<a href="#" class="btn right">HOW<br>TO<br>USE</a>
 		</div>
 	</section>
 
@@ -44,18 +89,128 @@
 	<script src="javascripts/vendor/backbone/backbone.min.js"></script>
 	<script src="javascripts/vendor/foundation/foundation.min.js"></script>
 	<script src="javascripts/vendor/foundation/foundation.init.js"></script>
+	
+	<script src="javascripts/vendor/tjerksmit/Block.js"></script>
+	<script src="javascripts/vendor/tjerksmit/ImageBlock.js"></script>
+	<script src="javascripts/vendor/tjerksmit/TextBlock.js"></script>
+	<script src="javascripts/vendor/tjerksmit/TitleBlock.js"></script>
+	<script src="javascripts/vendor/tjerksmit/VideoBlock.js"></script>
+	<script src="javascripts/vendor/tjerksmit/AudioBlock.js"></script>
 
 	<!-- APP -->
 	<script src="javascripts/src/app.js"></script>
 	<!-- MODULES -->
+	<script src="javascripts/src/modules/database.js"></script>
 	<script src="javascripts/src/modules/background.js"></script>
+	<script src="javascripts/src/modules/blockmanager.js"></script>
+	<script src="javascripts/src/modules/chrome.js"></script>
+	<script src="javascripts/src/modules/keypress.js"></script>
 
 	<script>
-		(function(App, $) {
-
-			App.register(Background, Background.init);
-			App.start();
+		window.Settings = { 
+			url: 'http://localhost:8888/'
+		};
 		
+		(function(App, $) {
+		
+			var chrome, blockmgr, keypress, home;
+			
+			App.register(Background, Background.init);
+			App.register(BlockManager, BlockManager.init, { canvas: '#chrome_content' });
+			App.register(Chrome, Chrome.init);
+			App.register(KeyPress, KeyPress.init);
+			
+			App.register(Database, Database.init, { 
+				datadir: 'data',
+				ready: function(err, database) {
+					if(err) {
+						console.log(err);
+						return;
+					}
+					
+					for(var name in database.locations) {
+						(function(name, loc) {
+							var key = loc.key;
+							
+							if(typeof key !== 'undefined') {
+								keypress.add(key, function() {
+									if(home.ishidden()) {
+										chrome.hide();
+									} else {
+										home.hide(300);
+									}
+									
+									chrome.set({
+										title: loc.title,
+										subtitle: loc.subtitle,
+										timeline: loc.events
+									});
+									
+									setTimeout(function() {
+										chrome.set({ background: loc.media + loc.background });
+										chrome.show(300);
+										blockmgr.replace(loc, 300);
+									}, 300);
+								});
+							}
+						})(name, database.locations[name]);
+					}
+					
+					chrome.on('timeline_press', function(time) {
+						chrome.set({
+							title: time.data.title,
+							subtitle: time.data.subtitle,
+							background: time.data.media + time.data.background
+						});
+						
+						$('a.uitime').each(function() {
+							$(this).removeClass('selected');
+						});
+						
+						$('[data-year="' + time.data.year + '"]').addClass('selected');
+						
+						blockmgr.replace(time.data, 300);
+					});
+				}
+			});
+			
+			App.start({
+				debug: true
+			});
+			
+			blockmgr = App.getModule('BlockManager');
+			chrome 	 = App.getModule('Chrome');
+			keypress = App.getModule('KeyPress');
+			
+			chrome.on('btn_press', function(btn) {
+				if(btn.button === 'home' && home.ishidden()) {
+					chrome.hide(300);
+					home.show(300);
+					
+					setTimeout(function() {
+						chrome.set({ background: 'images/map-home.png' });
+					}, 300);
+				}
+			});
+			
+			home = {
+				ishidden: function() {
+					return $('.home').hasClass('ishidden');	
+				},
+				
+				hide: function() {
+					$('.home').css('top', (-( $(window).height() + 100 )) + 'px').addClass('ishidden');
+				},
+				
+				show: function() {
+					chrome.hide(300);
+					
+					setTimeout(function() {
+						$('.home').css('top', '0px').removeClass('ishidden');
+					}, 300);
+				}
+			}
+			
 		})(App, jQuery);
 	</script>
 </body>

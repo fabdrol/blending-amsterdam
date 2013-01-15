@@ -1,4 +1,4 @@
-ModuleName = (function(App, $, _) {
+ModuleName = (function(App, $, _, Backbone) {
 
 	var Module = App.Module({
 		name: "ModuleName",
@@ -21,4 +21,4 @@ ModuleName = (function(App, $, _) {
 
 	return Module;
 
-})(App, jQuery, _);
+})(App, jQuery, _, Backbone);

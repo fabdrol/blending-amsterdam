@@ -54,7 +54,7 @@ Background = (function(App, $, _) {
 				'height': h + 'px',
 				'top': t + 'px',
 				'left': l + 'px',
-				'background-image': 'url(' + img + ')'
+				'background-image': 'url("' + img + '")'
 			});
 
 			im.remove();
@@ -71,10 +71,10 @@ Background = (function(App, $, _) {
 		$('body').attr('data-background', Module.url);
 		
 		if(Module.support === true) {
-			$('body').css('background-image', 'url(' + Module.url + ')');
+			$('body').css('background-image', 'url("' + Module.url + '")');
 		} else {
 			var lazy = _.debounce(function() { return Module.resize(); }, 300);
-			$(window).resize(lazy);
+			$(window).unbind('resize').resize(lazy);
 			Module.resize();
 		}
 	}
@@ -91,7 +91,7 @@ Background = (function(App, $, _) {
 			var body = $('body');
 
 			body.addClass('main-bg');
-			body.css('background-image', 'url(' + Module.url + ')');
+			body.css('background-image', 'url("' + Module.url + '")');
 		} else {
 			var lazy = _.debounce(function() { return Module.resize(); }, 300);
 			$(window).resize(lazy);

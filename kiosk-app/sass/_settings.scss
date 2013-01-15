@@ -1,5 +1,8 @@
 @import "foundation/common/ratios";
 
+
+$factor: 0.6;
+
 // Settings file containing Foundation defaults
 
 // Grid Settings
@@ -25,7 +28,7 @@ $darkEdge: rgba(#000, .2);
 
 // Font Settings
 
-$baseFont: "Gill Sans", sans-serif;
+$baseFont: "Calibri", Arial, sans-serif;
 $baseColor: #088e50;
 $darkGreen: #00371e;
 

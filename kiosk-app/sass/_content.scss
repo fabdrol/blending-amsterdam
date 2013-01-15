@@ -1,5 +1,407 @@
 @mixin content {
 
+	.timeLineContainer {
+		display:block;
+		width:100%;
+		height:150px;
+		text-align: center;
+
+		.timeLineContent {
+			display: block;
+			width:90%;
+			margin: 0 auto;
+			height:150px * $factor;
+			position: relative;
+			background-image: url(../images/middleTop.png);
+			background-repeat: repeat-x;
+			background-position: bottom;
+			text-align: center;
+			
+			&:before {
+				position:absolute;
+				content:"";
+				top:0px;
+// 					
+				left:-27px * $factor;
+				background-image: url(../images/cornerBL.png);
+				background-repeat: no-repeat;
+				background-size:auto (150px * $factor);		
+				display: block;
+				width: 28px * $factor;
+				height: 150px * $factor;	
+			}
+			
+			&:after {
+				position:absolute;
+				content:"";
+				top:0px;
+				right:-28px * $factor;
+				background-image: url(../images/cornerBR.png);
+				background-repeat: no-repeat;
+				background-size:auto (150px * $factor);	
+				display: block;
+				width: 28px * $factor;
+				height: 150px * $factor;
+			}
+			
+			a.uitime {
+				margin-right: 40px * $factor;
+				display: inline-block;
+				width: 100px * $factor;
+				height: 100px * $factor;
+				vertical-align: text-top;
+				margin-top:25px * $factor;			
+				background-image: url(../images/time.png);
+				background-repeat: no-repeat;
+				background-size: (100px * $factor) (100px * $factor);
+				text-decoration: none;
+				text-align: center;
+				
+				&:last-of-type {
+					margin-right:0px;
+				}
+				
+				p {
+					position: relative;
+					display: block;
+					overflow: hidden;
+					word-wrap: break-word;
+					margin: (18px * $factor) auto;
+					// top:-25px * $factor;
+					font-family: 'Neutra Text Light';
+					font-size: 44px;
+					font-size: 1.75em;
+					color:#9d261d;
+					line-height:75%;
+					text-decoration: none;
+					
+					span {
+						display: block;
+					}
+				}
+				
+				&:active {
+					background-image:url(../images/timeActive.png);
+					p {
+						color:#4f110f;
+					}
+				}
+
+
+				 &.selected {
+					width: 169px * $factor;
+					height: 177px * $factor;					
+					background-image: url(../images/selectedTime.png);
+					background-size: (169px * $factor) (177px * $factor);
+					margin-top: 0px;
+
+					
+					p {
+						position:relative;
+						top:20px * $factor;
+						width: 100%;
+						margin: 0 auto;
+						word-wrap: no-wrap;
+						font-family: 'Neutra Text Book';
+						font-size: 80px;
+						font-size: 300%;
+						color:#4f110f;
+					}
+				}
+			} //time
+		}// end timeline content
+	} // end timeline container
 	
+	.contentContainer {
+		display:block;
+		position: absolute;
+		top:(150px * $factor);
+		left:5%;
+		width:90%;
+		height:100%;
+		content:'';
+		text-align: center;	
+		
+		.content {
+			display:block;
+			position: inherit;
+			top:0; left:(-28px * $factor); right:(-28px * $factor); bottom:(350px * $factor);
+			border-right: 1px solid #4780b3;
+			border-left: 1px solid #4780b3;	
+			content:'';	
+		}
+	}
+	
+	.footerContainer {
+		position:absolute;
+		bottom:0px;
+		width:100%;
+		height:(200px * $factor);
+		
+		.buttonMarginLeft {
+			position: absolute;
+			display:block;
+			left:5%;
+			bottom:50px * $factor;
+			width:150px * $factor;
+			height:150px * $factor;
+			
+			.homeButton {
+				z-index:2;
+				position: inherit;
+				display:block;
+				width:150px * $factor;
+				height:150px * $factor;
+				background-image: url(../images/home.png);
+				background-size: (150px * $factor) (150px * $factor);
+				left:-28px * $factor;
+
+				&:active {
+					//@include transition-duration(0.5s);
+					background-image: url(../images/homeActive.png);
+				}
+			}
+		}
+		
+		.buttonMarginRight {
+			position: absolute;
+			display:block;
+			right:5%;
+			bottom:50px * $factor;
+			width:150px * $factor;
+			height:150px * $factor;
+			
+			.playButton {
+				z-index:2;
+				position: inherit;
+				display:block;
+				width:150px * $factor;
+				height:150px * $factor;
+				background-image: url(../images/play.png);
+				background-size: (150px * $factor) (150px * $factor);
+				right:-28px * $factor;
+
+				&:active {
+					//@include transition-duration(0.5s);
+					background-image: url(../images/playActive.png);
+				}
+
+			}
+		}
+		
+		.bottomTitleBoxContainer {
+			position:absolute;
+			bottom:0px;
+			display:block;
+			width:100%;
+			height:150px * $factor;
+			text-align: center;
+			overflow: hidden;
+			
+			.bottomTitleBoxContent {
+				display: block;
+				width:50%;
+				margin: 0 auto;
+				height:150px * $factor;
+				position: relative;
+				background-image: url(../images/middleBottom.png);
+				background-repeat: repeat-x;
+				
+				&:before {
+					position:absolute;
+					content:"";
+					top:0px;
+					left:-28px;
+					background-image: url(../images/cornerTL.png);
+					background-repeat: no-repeat;
+
+					display: block;
+					width: 28px;
+					height: 150px * $factor;
+				}
+				&:after {
+					position:absolute;
+					content:"";
+					top:0px;
+					right:-28px;
+					background-image: url(../images/cornerTR.png);
+					background-repeat: no-repeat;
+					display: block;
+					width: 28px;
+					height: 150px * $factor;
+				}
+				
+				h1 {
+					padding-top: 20px * $factor;
+					font-family: 'Neutra Text Book';
+					font-size: 50px * $factor;
+					color:#4f110f;
+				}
+				
+				.subTitle {
+					position: absolute;
+					width:70%;
+					left:15%;
+					height:80px * $factor;
+					bottom:0px;
+					border-top: 1px solid #4780b3;
+					
+					h2 {
+						padding-top: 10px * $factor;
+						margin:0;
+						font-family: 'Neutra Text Book Italic';
+						font-size:25px * $factor;
+						color:#9d261d;
+					}
+				}
+			}
+		}
+	}
+	
+	.block {
+		display: block;
+		position: absolute;
+		border-top: 1px solid #4780b3;
+		border-bottom: 1px solid #4780b3;
+		background-image:url(../images/backgroundBlock.png);
+		background-repeat:repeat;
+		
+		
+		&:before {
+			position:absolute;
+			width:53px * $factor;
+			top:-1px;
+			left:-53px * $factor;
+			bottom:-1px;
+			height:100%;
+			content:"";
+			background-image: url(../images/blockCornerBL.png);
+			background-repeat: no-repeat;
+			background-position: bottom;
+			background-size:(53px * $factor);	
+			border-top: 1px solid #4780b3;
+				
+		}
+		&:after {
+			z-index:-1;
+			position:absolute;
+			width:53px * $factor;
+			top:-1px;
+			right:-53px * $factor;
+			bottom:-1px;
+			content:"";
+			background-image: url(../images/blockCornerTR.png);
+			background-repeat: no-repeat;
+			background-size:(53px * $factor);
+			border-bottom: 1px solid #4780b3;
+				
+		}
+
+		.textBlock {
+			overflow: hidden;
+			max-height: 100%;
+			
+			h1 {
+				position:absolute;
+				top: 3px * $factor;
+				font-family: 'Neutra Text Demi';
+				font-size: 26px * $factor;
+				padding: 0;
+				color: #9D2916;
+			}
+
+			p {
+				position:absolute;
+				text-align: left;
+				padding: (40px * $factor) (20px * $factor);
+				top:52px * $factor;
+				margin:0px (-53px * $factor) 0 0;
+				padding:(10px * $factor) (53px * $factor)  0 0;
+				border-top: 1px solid #4780b3;
+				font-family:'Neutra Text Book Italic';
+				font-size: 26px * $factor;
+				line-height:30px * $factor;
+				color:#000;
+			}
+		}
+
+		.imageBlock {
+			
+			position:absolute;
+			top: 28px * $factor;
+			bottom:27px * $factor;
+			left:-24px * $factor;
+			right:-24px * $factor;
+			border-radius:10px * $factor;
+			overflow:hidden;
+			text-align:center;
+
+			img {
+				max-width:100%;
+				max-height:100%;
+				border-radius:10px * $factor;
+			}
+			
+			div.text {
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				color: white;
+				width: 100%;
+				height: 30px;
+				text-align: center;
+				
+				h1 {
+					display: inline-block;
+					padding: 5px 10px;
+					background-color: rgba(0,0,0,0.8);
+					color: white;
+					margin: 0;
+					font-size: 16px;
+					@include border-radius(3px);
+				}
+				
+				p {
+					display: none;
+				}
+			}
+		}
+
+		.videoBlock {
+			
+			position:absolute;
+			top: 27px * $factor;
+			bottom:27px * $factor;
+			left:-20px * $factor;
+			right:-20px * $factor;
+			@include border-radius(10px * $factor);
+			overflow:hidden;
+			text-align:center;
+			
+			.placeholder {
+				display: block;
+				width: 100%;
+				height: auto;
+				padding-top: 90px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: white;
+				font-weight: bold;
+				text-align: center;
+				z-index: 15;
+			}
+			
+
+			.video {
+				background-color: black;
+				width:100%;
+				height:auto;
+				z-index: 10;
+				@include border-radius(10px * $factor);
+			}
+		}	
+	}
 
 }

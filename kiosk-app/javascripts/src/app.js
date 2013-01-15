@@ -74,6 +74,10 @@ App = (function($, _, Bb) {
 		};
 
 		Module.listen = function(Mod, evt, handler) {
+			if(typeof Mod === 'string') {
+				Mod = App.getModule(Mod);
+			}
+			
 			App.on(Mod.package.name + ':' + evt, handler);
 		};
 
@@ -87,6 +91,59 @@ App = (function($, _, Bb) {
 
 		Module.trigger = function(evt, args) {
 			App.trigger(name + ':' + evt, args);
+		}
+		
+		Module._bootstrap = function() {
+			Module.Model = Bb.Model;
+			Module.Collection = Bb.Collection;
+			Module.View = Bb.View;
+			Module.Backbone = Bb;
+		}
+		
+		Module.Request = function(path, method, data, address, cb) {
+			if(typeof window.Settings === 'object' && typeof window.Settings.url === 'string' && window.Settings.url.length > 0) {
+				var _addr = window.Settings.url;
+			} else {
+				var _addr = '';
+			}			
+			
+			if(typeof method === 'function' && typeof data === 'undefined') {
+				var cb 		= method;
+				var method 	= 'GET';
+				var data 	= null;
+				var address = _addr;
+			}
+			
+			if(typeof data === 'function' && typeof address === 'undefined') {
+				var cb 		= data;
+				var data 	= null;
+				var address = _addr;
+			}
+			
+			if(typeof address === 'function' && typeof cb === 'undefined') {
+				var cb 		= address;
+				var address = _addr;
+			}
+			
+			var _data = {
+				'_method': method.toUpperCase()
+			}
+			
+			_data = _.extend(_data, data);
+			
+			$.ajax({
+				url: address + path,
+				data: _data,
+				type: 'POST',
+				
+				success: function(response, status) {
+					if(status == 'success') {
+						cb(null, response);
+					} else {
+						cb("Something went wrong...", response);
+					}
+				}
+			});
 		}
 
 		return Module;
@@ -127,4 +184,3 @@ App = (function($, _, Bb) {
 	return App;
 
 })(jQuery, _, Backbone);
-
