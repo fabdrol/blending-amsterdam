@@ -1,0 +1,317 @@
+
+$iphoneHeight: 460px - 44px;
+$iphoneWidth: 320px;
+$headerHeight: 43px;
+
+
+
+body, html {
+	width:320px;
+	height:$iphoneHeight;
+	margin:0;
+	padding:0;
+	font-family: 'Archivo Narrow', sans-serif;
+}
+
+body.body-credits {
+		overflow: auto;
+	}
+
+	.credits {
+		display: block;
+		height:1245px;
+		width: 100%;
+		content:'';
+		background-image:url(../img/credits.jpg);
+		background-image: -webkit-image-set(url(../img/credits.jpg) 1x, url(../img/../img/creditsHD.jpg) 2x);
+		background-position: 0px -44px;
+	}
+
+.wrapper {
+	width:320px;
+	height:100%;
+	background-color:grey;
+
+	.homeScreen {
+		display:block;
+		height:$iphoneHeight;
+		width: $iphoneWidth;
+		background-image:url(../img/home.jpg);
+		background-position: 0px -44px;
+		content:'';
+
+
+		.buttonStart {
+			position: absolute;
+			top:$iphoneHeight - 105px ;
+			left:110px;
+			width:94px;
+			height:49px;
+			background-image:url(../img/start.png);
+			background-repeat: no-repeat;
+			content:'';
+		}
+
+		.buttonInfo {
+			display:block;
+			position: absolute;
+			top:$iphoneHeight - 40px;
+			left:20px;
+			text-decoration: none;
+			
+			font-size: 17px;
+			color:#EE7859;
+
+			&:visited {
+				color:#EE7859;
+			}
+
+			&:active {
+			}
+		}
+		.buttonCredits {
+			display:block;
+			position: absolute;
+			top: $iphoneHeight - 40px;
+			left: $iphoneWidth - 85px;
+			text-decoration: none;
+			
+			font-size: 17px;
+			color:#EE7859;
+
+			&:visited {
+				color:#EE7859;
+			}
+
+			&:active {
+			}
+
+
+
+		}
+
+
+	}
+
+	.infoScreen {
+		height:$iphoneHeight;
+		width: $iphoneWidth;
+		background-image:url(../img/info.jpg);
+		background-image: -webkit-image-set(url(../img/info.jpg) 1x, url(../img/../img/infoHD.jpg) 2x);
+		background-position:0px -44px;
+		content:'';
+	}
+
+	.creditScreen {
+		height:$iphoneHeight;
+		width: $iphoneWidth;
+		content:'';
+		overflow-y:scroll;
+		overflow-x:hidden;
+
+		.background2 {
+			height:1245px;
+			width: $iphoneWidth;
+			background-image:url(../img/credits.jpg);
+			background-image: -webkit-image-set(url(../img/credits.jpg) 1x, url(../img/../img/creditsHD.jpg) 2x);
+			background-position: 0px -44px;
+			content:'';
+
+		}
+	}
+
+	
+
+	.header {
+
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 999;
+		width:320px;
+		height:$headerHeight;
+
+		background-image: url(../img/headerSprite.png);
+		background-position: 0px -1px;
+		background-repeat: no-repeat;
+		
+		text-align:center;
+		text-shadow: 0 -1px 0 black;
+		overflow:hidden;
+
+		.map, .back {
+			position:absolute;
+			left:10px;
+			top:7px;
+			width:52px;
+			height:30px;
+			overflow: hidden;
+			background-image: url(../img/headerSprite.png);
+			background-position:-9px -65px;
+			background-repeat: no-repeat;
+			text-shadow: 0 -1px 0 black;
+			text-align: center;
+			line-height: 30px;
+			font-size: 0.8em;
+			color: white;
+			padding-left: 5px;
+		}
+
+		.back {
+			display:none;
+		}
+
+
+
+		.menu {
+			position:absolute;
+			left: $iphoneWidth - 42px ;
+			top:7px;
+			width:32px;
+			height:31px;
+			overflow: hidden;
+			background-image:url(../img/headerSprite.png);
+			background-position:-69px -65px;
+			background-repeat: no-repeat;
+			
+		}
+
+		p {
+			margin:13px 0 0 0;
+			padding:0;
+			font-size:1em;
+			font-family: 'Archivo Narrow', sans-serif;
+			color:#FFF;
+
+		}
+	}
+
+	.viewport {
+		display: block;
+		position: absolute;
+		top:0;
+		left:0;
+		z-index: 10;
+		overflow:hidden;
+		width:320px;
+		height:100%;
+		min-height:480px - 44px;
+
+		.overlay {
+			position:absolute;
+			top: 0;
+			left: 0;
+			width:320px;
+			z-index: 15;
+			height: 100%;
+		}
+
+		.textBlock {
+			z-index:50;
+			display:none;
+			position: absolute;
+			top:80px - 30px ;
+			left:30px - 10px;
+			width:93px;
+			height:93px;
+			background-image:url(../img/textBlock.png);
+			background-repeat: no-repeat;
+		}
+
+
+		.imageBlock {
+			z-index:50;
+			display:none;
+			position: absolute;
+			top:173px - 30px;
+			left:123px - 10px ;
+			width:93px;
+			height:93px;
+			background-image:url(../img/imageBlock.png);
+			background-repeat: no-repeat;
+		}
+
+		.playBlock {
+			z-index:50;
+			display:none;
+			position: absolute;
+			top:266px - 30px;
+			left:216px - 10px;
+			width:93px;
+			height:93px;
+			background-image:url(../img/playBlock.png);
+			background-repeat: no-repeat;
+		}
+
+		.block {
+			z-index:50;
+			display:none;
+			position: absolute;
+			top:42px;
+			left:5px;
+			width:307px;
+			height:305px;
+			background-image:url(../img/block2.png);
+
+			background-repeat: no-repeat;
+			overflow-y:scroll;
+			overflow-x:hidden;
+
+			h2 {
+				padding:0;
+				margin:5px 0 0 80px;
+				font-size: 21px;
+				font-style: normal;
+				color:#EE7859;
+			}
+
+			p {
+				padding:0;
+				margin:0;
+				font-size: 21px;
+				color:#333333;
+				margin:0px 15px 0px 15px;
+
+			}
+		}
+
+		
+		.view {
+			height:$iphoneHeight;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width:3040px;
+			//background-image:url(../img/swipe/carre-swipe.jpg);
+			background-position: -25px (-107px + $headerHeight); 
+
+		}
+
+		.carre { background-image:url(../img/swipe/carre-swipe.jpg); background-position: -25px (-107px + $headerHeight);}
+		.brouwerij { background-image:url(../img/swipe/brouwerij-swipe.jpg); background-position: -25px (-107px + $headerHeight); }
+		.waag { background-image:url(../img/swipe/nieuwmarkt-swipe.jpg); background-position: -25px (-107px + $headerHeight);}
+		.leidseplein { background-image:url(../img/swipe/leidseplein-swipe.jpg); background-position: -25px (-107px + $headerHeight); }
+		.muiderpoort { background-image:url(../img/swipe/muiderpoort-swipe.jpg); background-position: -25px (-107px + $headerHeight); }
+		
+
+		.fix {
+			height:480px;
+			width:320px;
+			background-position: 0px -107px; 
+		}
+
+		.amstel { background-image:url(../img/swipe/amstel-fix.jpg); background-position: 0px (-107px + $headerHeight); }
+		.artis { background-image:url(../img/swipe/artis-fix.jpg); background-position: 0px (-107px + $headerHeight); }
+		.central-station { background-image:url(../img/swipe/central-station-fix.jpg);  background-position: 0px (-107px + $headerHeight);}
+		.dam { background-image:url(../img/swipe/dam-fix.jpg); background-position: 0px (-107px + $headerHeight);}
+		.funen-park { background-image:url(../img/swipe/funen-park-fix.jpg); background-position: 0px (-107px + $headerHeight);}
+		.heineken-experience { background-image:url(../img/swipe/heineken-experience-fix.jpg); background-position: 0px (-107px + $headerHeight);}
+		.hermitage { background-image:url(../img/swipe/hermitage-fix.jpg); background-position: 0px (-107px + $headerHeight); }
+	
+	}
+
+
+
+}
+

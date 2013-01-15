@@ -26,6 +26,13 @@
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
 	<script src="javascripts/vendor/foundation/modernizr.foundation.js"></script>
+	
+	<script>
+		window.Settings = { 
+			// url: 'http://localhost:8888/'
+			url: 'file:///Users/Fabian/Desktop/Blending%20Amsterdam/blending-amsterdam/kiosk-app/'
+		};
+	</script>
 </head>
 
 <body data-background="images/map-home.png">
@@ -107,10 +114,6 @@
 	<script src="javascripts/src/modules/keypress.js"></script>
 
 	<script>
-		window.Settings = { 
-			url: 'http://localhost:8888/'
-		};
-		
 		(function(App, $) {
 		
 			var chrome, blockmgr, keypress, home;

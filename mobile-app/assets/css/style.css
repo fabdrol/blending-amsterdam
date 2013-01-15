@@ -1,0 +1,325 @@
+/* line 8, ../sass/style.scss */
+body, html {
+  width: 320px;
+  height: 416px;
+  margin: 0;
+  padding: 0;
+  font-family: "Archivo Narrow", sans-serif;
+}
+
+/* line 16, ../sass/style.scss */
+body.body-credits {
+  overflow: auto;
+}
+
+/* line 20, ../sass/style.scss */
+.credits {
+  display: block;
+  height: 1245px;
+  width: 100%;
+  content: '';
+  background-image: url(../img/credits.jpg);
+  background-image: -webkit-image-set(url(../img/credits.jpg) 1x, url(../img/../img/creditsHD.jpg) 2x);
+  background-position: 0px -44px;
+}
+
+/* line 30, ../sass/style.scss */
+.wrapper {
+  width: 320px;
+  height: 100%;
+  background-color: grey;
+}
+/* line 35, ../sass/style.scss */
+.wrapper .homeScreen {
+  display: block;
+  height: 416px;
+  width: 320px;
+  background-image: url(../img/home.jpg);
+  background-position: 0px -44px;
+  content: '';
+}
+/* line 44, ../sass/style.scss */
+.wrapper .homeScreen .buttonStart {
+  position: absolute;
+  top: 311px;
+  left: 110px;
+  width: 94px;
+  height: 49px;
+  background-image: url(../img/start.png);
+  background-repeat: no-repeat;
+  content: '';
+}
+/* line 55, ../sass/style.scss */
+.wrapper .homeScreen .buttonInfo {
+  display: block;
+  position: absolute;
+  top: 376px;
+  left: 20px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #EE7859;
+}
+/* line 65, ../sass/style.scss */
+.wrapper .homeScreen .buttonInfo:visited {
+  color: #EE7859;
+}
+/* line 72, ../sass/style.scss */
+.wrapper .homeScreen .buttonCredits {
+  display: block;
+  position: absolute;
+  top: 376px;
+  left: 235px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #EE7859;
+}
+/* line 82, ../sass/style.scss */
+.wrapper .homeScreen .buttonCredits:visited {
+  color: #EE7859;
+}
+/* line 96, ../sass/style.scss */
+.wrapper .infoScreen {
+  height: 416px;
+  width: 320px;
+  background-image: url(../img/info.jpg);
+  background-image: -webkit-image-set(url(../img/info.jpg) 1x, url(../img/../img/infoHD.jpg) 2x);
+  background-position: 0px -44px;
+  content: '';
+}
+/* line 105, ../sass/style.scss */
+.wrapper .creditScreen {
+  height: 416px;
+  width: 320px;
+  content: '';
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* line 112, ../sass/style.scss */
+.wrapper .creditScreen .background2 {
+  height: 1245px;
+  width: 320px;
+  background-image: url(../img/credits.jpg);
+  background-image: -webkit-image-set(url(../img/credits.jpg) 1x, url(../img/../img/creditsHD.jpg) 2x);
+  background-position: 0px -44px;
+  content: '';
+}
+/* line 125, ../sass/style.scss */
+.wrapper .header {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 320px;
+  height: 43px;
+  background-image: url(../img/headerSprite.png);
+  background-position: 0px -1px;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-shadow: 0 -1px 0 black;
+  overflow: hidden;
+}
+/* line 143, ../sass/style.scss */
+.wrapper .header .map, .wrapper .header .back {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  width: 52px;
+  height: 30px;
+  overflow: hidden;
+  background-image: url(../img/headerSprite.png);
+  background-position: -9px -65px;
+  background-repeat: no-repeat;
+  text-shadow: 0 -1px 0 black;
+  text-align: center;
+  line-height: 30px;
+  font-size: 0.8em;
+  color: white;
+  padding-left: 5px;
+}
+/* line 161, ../sass/style.scss */
+.wrapper .header .back {
+  display: none;
+}
+/* line 167, ../sass/style.scss */
+.wrapper .header .menu {
+  position: absolute;
+  left: 278px;
+  top: 7px;
+  width: 32px;
+  height: 31px;
+  overflow: hidden;
+  background-image: url(../img/headerSprite.png);
+  background-position: -69px -65px;
+  background-repeat: no-repeat;
+}
+/* line 180, ../sass/style.scss */
+.wrapper .header p {
+  margin: 13px 0 0 0;
+  padding: 0;
+  font-size: 1em;
+  font-family: "Archivo Narrow", sans-serif;
+  color: #FFF;
+}
+/* line 190, ../sass/style.scss */
+.wrapper .viewport {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+  width: 320px;
+  height: 100%;
+  min-height: 436px;
+}
+/* line 201, ../sass/style.scss */
+.wrapper .viewport .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  z-index: 15;
+  height: 100%;
+}
+/* line 210, ../sass/style.scss */
+.wrapper .viewport .textBlock {
+  z-index: 50;
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  width: 93px;
+  height: 93px;
+  background-image: url(../img/textBlock.png);
+  background-repeat: no-repeat;
+}
+/* line 223, ../sass/style.scss */
+.wrapper .viewport .imageBlock {
+  z-index: 50;
+  display: none;
+  position: absolute;
+  top: 143px;
+  left: 113px;
+  width: 93px;
+  height: 93px;
+  background-image: url(../img/imageBlock.png);
+  background-repeat: no-repeat;
+}
+/* line 235, ../sass/style.scss */
+.wrapper .viewport .playBlock {
+  z-index: 50;
+  display: none;
+  position: absolute;
+  top: 236px;
+  left: 206px;
+  width: 93px;
+  height: 93px;
+  background-image: url(../img/playBlock.png);
+  background-repeat: no-repeat;
+}
+/* line 247, ../sass/style.scss */
+.wrapper .viewport .block {
+  z-index: 50;
+  display: none;
+  position: absolute;
+  top: 42px;
+  left: 5px;
+  width: 307px;
+  height: 305px;
+  background-image: url(../img/block2.png);
+  background-repeat: no-repeat;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* line 261, ../sass/style.scss */
+.wrapper .viewport .block h2 {
+  padding: 0;
+  margin: 5px 0 0 80px;
+  font-size: 21px;
+  font-style: normal;
+  color: #EE7859;
+}
+/* line 269, ../sass/style.scss */
+.wrapper .viewport .block p {
+  padding: 0;
+  margin: 0;
+  font-size: 21px;
+  color: #333333;
+  margin: 0px 15px 0px 15px;
+}
+/* line 280, ../sass/style.scss */
+.wrapper .viewport .view {
+  height: 416px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3040px;
+  background-position: -25px -64px;
+}
+/* line 291, ../sass/style.scss */
+.wrapper .viewport .carre {
+  background-image: url(../img/swipe/carre-swipe.jpg);
+  background-position: -25px -64px;
+}
+/* line 292, ../sass/style.scss */
+.wrapper .viewport .brouwerij {
+  background-image: url(../img/swipe/brouwerij-swipe.jpg);
+  background-position: -25px -64px;
+}
+/* line 293, ../sass/style.scss */
+.wrapper .viewport .waag {
+  background-image: url(../img/swipe/nieuwmarkt-swipe.jpg);
+  background-position: -25px -64px;
+}
+/* line 294, ../sass/style.scss */
+.wrapper .viewport .leidseplein {
+  background-image: url(../img/swipe/leidseplein-swipe.jpg);
+  background-position: -25px -64px;
+}
+/* line 295, ../sass/style.scss */
+.wrapper .viewport .muiderpoort {
+  background-image: url(../img/swipe/muiderpoort-swipe.jpg);
+  background-position: -25px -64px;
+}
+/* line 298, ../sass/style.scss */
+.wrapper .viewport .fix {
+  height: 480px;
+  width: 320px;
+  background-position: 0px -107px;
+}
+/* line 304, ../sass/style.scss */
+.wrapper .viewport .amstel {
+  background-image: url(../img/swipe/amstel-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 305, ../sass/style.scss */
+.wrapper .viewport .artis {
+  background-image: url(../img/swipe/artis-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 306, ../sass/style.scss */
+.wrapper .viewport .central-station {
+  background-image: url(../img/swipe/central-station-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 307, ../sass/style.scss */
+.wrapper .viewport .dam {
+  background-image: url(../img/swipe/dam-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 308, ../sass/style.scss */
+.wrapper .viewport .funen-park {
+  background-image: url(../img/swipe/funen-park-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 309, ../sass/style.scss */
+.wrapper .viewport .heineken-experience {
+  background-image: url(../img/swipe/heineken-experience-fix.jpg);
+  background-position: 0px -64px;
+}
+/* line 310, ../sass/style.scss */
+.wrapper .viewport .hermitage {
+  background-image: url(../img/swipe/hermitage-fix.jpg);
+  background-position: 0px -64px;
+}
