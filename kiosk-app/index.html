@@ -90,6 +90,7 @@
 
 
 	<!-- JAVASCRIPT -->
+	<script src="data/data.js"></script>
 	<!-- LIB -->
 	<script src="javascripts/vendor/jquery/jquery.min.js"></script>
 	<script src="javascripts/vendor/backbone/underscore.min.js"></script>
@@ -107,7 +108,7 @@
 	<!-- APP -->
 	<script src="javascripts/src/app.js"></script>
 	<!-- MODULES -->
-	<script src="javascripts/src/modules/database.js"></script>
+	<script src="javascripts/src/modules/database2.js"></script>
 	<script src="javascripts/src/modules/background.js"></script>
 	<script src="javascripts/src/modules/blockmanager.js"></script>
 	<script src="javascripts/src/modules/chrome.js"></script>
@@ -123,6 +124,7 @@
 			App.register(Chrome, Chrome.init);
 			App.register(KeyPress, KeyPress.init);
 			
+			/**
 			App.register(Database, Database.init, { 
 				datadir: 'data',
 				ready: function(err, database) {
@@ -157,6 +159,59 @@
 								});
 							}
 						})(name, database.locations[name]);
+					}
+					
+					chrome.on('timeline_press', function(time) {
+						chrome.set({
+							title: time.data.title,
+							subtitle: time.data.subtitle,
+							background: time.data.media + time.data.background
+						});
+						
+						$('a.uitime').each(function() {
+							$(this).removeClass('selected');
+						});
+						
+						$('[data-year="' + time.data.year + '"]').addClass('selected');
+						
+						blockmgr.replace(time.data, 300);
+					});
+				}
+			});
+			//**/
+			
+			App.register(Database2, Database2.init, { 
+				datadir: 'data',
+				ready: function(err, database) {
+					if(err) {
+						console.log(err);
+						return;
+					}
+					
+					for(var key in database.locations) {
+						(function(key, name, loc) {
+							if(typeof key !== 'undefined') {
+								keypress.add(key, function() {
+									if(home.ishidden()) {
+										chrome.hide();
+									} else {
+										home.hide(300);
+									}
+									
+									chrome.set({
+										title: loc.title,
+										subtitle: loc.subtitle,
+										timeline: loc.events
+									});
+									
+									setTimeout(function() {
+										chrome.set({ background: loc.media + loc.background });
+										chrome.show(300);
+										blockmgr.replace(loc, 300);
+									}, 300);
+								});
+							}
+						})(key, database.locations[key].name, database.locations[key]);
 					}
 					
 					chrome.on('timeline_press', function(time) {
